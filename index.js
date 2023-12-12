@@ -2,6 +2,7 @@
 const express = require("express");
 const app = express();
 const PORT = 5000;
+const cors = require("cors");
 const mongoose = require("mongoose");
 require("dotenv").config();
 
@@ -25,6 +26,7 @@ mongoose
 // })
 
 //ミドルウェア
+app.use(cors());
 app.use(express.json());//json形式に変換
 app.use("/api/auth", authRoute);
 app.use("/api/post", postsRoute);
