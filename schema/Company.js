@@ -33,6 +33,10 @@ const CompanySchema = new mongoose.Schema({
         type: Array,
         default: [],
     },
+    userId: {
+        type: String,
+        required: true,
+    },
 },
     //時間を格納
     { timestamps: true }

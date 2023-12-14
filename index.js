@@ -9,6 +9,7 @@ require("dotenv").config();
 const authRoute = require("./routes/auth");
 const postsRoute = require("./routes/post");
 const userRoute = require("./routes/user");
+const companyRoute = require("./routes/company");
 
 
 mongoose
@@ -31,6 +32,7 @@ app.use(express.json());//json形式に変換
 app.use("/api/auth", authRoute);
 app.use("/api/post", postsRoute);
 app.use("/api/user", userRoute);
+app.use("/api/company", companyRoute);
 
 //express??
 app.listen(PORT, () => console.log("サーバーが起動中・・・"));
