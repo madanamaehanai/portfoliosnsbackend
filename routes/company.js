@@ -32,14 +32,14 @@ router.get("/company/:categoryname", async (req, res) => {
 
             const companyPosts = await Company.find({ category: req.params.categoryname }).exec();
 
-        if (companyPosts.length > 0) {
-            const serviceIds = companyPosts.map(company => company.service.map(service => service._id)).flat();
-            const services = [];
+        // if (companyPosts.length > 0) {
+        //     const serviceIds = companyPosts.map(company => company.service.map(service => service._id)).flat();
+        //     const services = [];
 
-            for (const serviceId of serviceIds) {
-                const coservice = await Coservices.findById(serviceId);
-                services.push(coservice);
-            }
+        //     for (const serviceId of serviceIds) {
+        //         const coservice = await Coservices.findById(serviceId);
+        //         services.push(coservice);
+        //     }
 
             
 
@@ -47,12 +47,12 @@ router.get("/company/:categoryname", async (req, res) => {
                 // companyPosts,
                 // coservicesPosts
                 // companyIds
-                companyPosts,
-                services
+                companyPosts
+                // services
             });
-        } else {
-            res.status(404).json({ message: 'No company found for the specified category' });
-        }
+        // } else {
+        //     res.status(404).json({ message: 'No company found for the specified category' });
+        // }
     } catch (err) {
         res.status(500).json(err);
     }
