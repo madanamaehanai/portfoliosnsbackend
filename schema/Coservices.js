@@ -33,6 +33,10 @@ const CoservicesSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    companyid: {
+        type: String,
+        required: true,
+    },
 },
     //時間を格納
     { timestamps: true }
