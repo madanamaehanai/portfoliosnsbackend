@@ -86,7 +86,7 @@ router.post("/company/services/:company_id", async (req, res) => {
 //会社サービス情報を取得
 router.get("/company/services/:id", async (req, res) => {
     try {
-            const companyservicesPosts = await Coservices.find({ id: req.params._id }).exec();
+            const companyservicesPosts = await Coservices.findOne({ id: req.params._id }).exec();
             res.status(200).json({
                 companyservicesPosts
             });
