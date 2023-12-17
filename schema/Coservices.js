@@ -11,7 +11,7 @@ const CoservicesSchema = new mongoose.Schema({
     servicesurl: {
         type: String,
         required: true,
-        uniqu: true,
+        unique: true,
     },
     servicesdesc: {
         type: String,
