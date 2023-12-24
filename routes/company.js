@@ -18,19 +18,28 @@ router.post("/company", async (req, res) => {
     }
 });
 
+//会社プロフィールの取得
+router.get("/company/:id", async (req, res) => {
+    try {
+        const CompanyInfo = await Company.findById(req.params.id);
+        return res.status(200).json(CompanyInfo);
+    } catch (err) {
+        return res.status(500).json(err);
+    }
+});
 
-//会社情報を取得
+//カテゴリー毎の会社情報を取得
 router.get("/company/:categoryname", async (req, res) => {
     try {
         // const companyPosts = await Company.find({ category: req.params.categoryname }).exec();
         // res.status(200).json(companyPosts);
 
         // if (companyPosts.length > 0) {
-            // const companyIds = company.service.map(service => service._id);
+        // const companyIds = company.service.map(service => service._id);
 
-            // const coservicesPosts = await Coservices.find({ _id: { $in: companyIds } }).exec();
+        // const coservicesPosts = await Coservices.find({ _id: { $in: companyIds } }).exec();
 
-            const companyPosts = await Company.find({ category: req.params.categoryname }).exec();
+        const companyPosts = await Company.find({ category: req.params.categoryname }).exec();
 
         // if (companyPosts.length > 0) {
         //     const serviceIds = companyPosts.map(company => company.service.map(service => service._id)).flat();
@@ -41,15 +50,15 @@ router.get("/company/:categoryname", async (req, res) => {
         //         services.push(coservice);
         //     }
 
-            
 
-            res.status(200).json({
-                // companyPosts,
-                // coservicesPosts
-                // companyIds
-                companyPosts
-                // services
-            });
+
+        res.status(200).json({
+            // companyPosts,
+            // coservicesPosts
+            // companyIds
+            companyPosts
+            // services
+        });
         // } else {
         //     res.status(404).json({ message: 'No company found for the specified category' });
         // }
@@ -86,10 +95,10 @@ router.post("/company/services/:company_id", async (req, res) => {
 //会社サービス情報を取得
 router.get("/company/services/:id", async (req, res) => {
     try {
-            const companyservicesPosts = await Coservices.findOne({ _id: req.params.id }).exec();
-            res.status(200).json({
-                 companyservicesPosts
-            });
+        const companyservicesPosts = await Coservices.findOne({ _id: req.params.id }).exec();
+        res.status(200).json({
+            companyservicesPosts
+        });
     } catch (err) {
         res.status(500).json(err);
     }
