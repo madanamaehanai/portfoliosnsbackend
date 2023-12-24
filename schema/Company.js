@@ -38,7 +38,8 @@ const CompanySchema = new mongoose.Schema({
         required: true,
     },
     category: {
-        type: String,
+        type: Array,
+        default: [],
         required: true,
     },
 },
