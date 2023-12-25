@@ -10,6 +10,7 @@ const authRoute = require("./routes/auth");
 const postsRoute = require("./routes/post");
 const userRoute = require("./routes/user");
 const companyRoute = require("./routes/company");
+const companypostRoute = require("./routes/companypost");
 
 
 mongoose
@@ -33,6 +34,7 @@ app.use("/api/auth", authRoute);
 app.use("/api/post", postsRoute);
 app.use("/api/user", userRoute);
 app.use("/api/company", companyRoute);
+app.use("/api/companypost", companypostRoute);
 
 //express??
 app.listen(PORT, () => console.log("サーバーが起動中・・・"));
