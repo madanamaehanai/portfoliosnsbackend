@@ -25,8 +25,12 @@ const CompanyPostSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    tag: {
+        type: Array,
+        default: [],
+    },
 },
     { timestamps: true }
 );
 
-module.exports =mongoose.model("CompanyPost", CompanyPostSchema);
+module.exports = mongoose.model("CompanyPost", CompanyPostSchema);

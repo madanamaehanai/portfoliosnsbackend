@@ -8,7 +8,7 @@ const CompanyPost = require("../schema/CompanyPost");
 
 
 
-
+//後で削除
 //投稿を作成する
 router.post("/", async (req, res) => {
     const newPost = new CompanyPost(req.body);
@@ -32,6 +32,17 @@ router.post("/", async (req, res) => {
 router.get("/:companyid", async (req, res) => {
     try {
         const Companyposts = await CompanyPost.find({ companyid: req.params.companyid });
+        return res.status(200).json(Companyposts);
+    } catch (err) {
+        return res.status(500).json(err);
+    }
+});
+
+
+//会社idが一致するpostを取得しカテゴリーを検索
+router.get("/:companyid/:tagname", async (req, res) => {
+    try {
+        const Companyposts = await CompanyPost.find({ companyid: req.params.companyid, tag: req.params.tagname });
         return res.status(200).json(Companyposts);
     } catch (err) {
         return res.status(500).json(err);
