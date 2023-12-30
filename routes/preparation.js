@@ -20,5 +20,15 @@ router.post("/", async (req, res) => {
     }
 });
 
+//会社idが一致するpostを取得しカテゴリーを検索
+router.get("/:tagname", async (req, res) => {
+    try {
+        const Answerposts = await Preparation.find({ category: req.params.tagname});
+        return res.status(200).json(Answerposts);
+    } catch (err) {
+        return res.status(500).json(err);
+    }
+});
+
 
 module.exports = router;
