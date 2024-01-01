@@ -12,6 +12,7 @@ const userRoute = require("./routes/user");
 const companyRoute = require("./routes/company");
 const companypostRoute = require("./routes/companypost");
 const preparationSchema = require("./routes/preparation");
+const LearnSchema = require("./routes/learn");
 
 
 mongoose
@@ -37,6 +38,7 @@ app.use("/api/user", userRoute);
 app.use("/api/company", companyRoute);
 app.use("/api/companypost", companypostRoute);
 app.use("/api/preparation", preparationSchema);
+app.use("/api/learn", LearnSchema);
 
 //express??
 app.listen(PORT, () => console.log("サーバーが起動中・・・"));
