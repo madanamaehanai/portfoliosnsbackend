@@ -42,6 +42,12 @@ const CompanySchema = new mongoose.Schema({
         default: [],
         required: true,
     },
+    employees: {
+        type: String,
+    },
+    income: {
+        type: String,
+    },
 },
     //時間を格納
     { timestamps: true }

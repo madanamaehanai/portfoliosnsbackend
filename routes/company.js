@@ -83,4 +83,15 @@ router.get("/company/services/:id", async (req, res) => {
     }
 });
 
+
+//投稿を修正する
+router.post("/update/:id", async (req, res) => {
+    try {
+        const Companyupdate = await Company.findByIdAndUpdate({ _id: req.params.id }, req.body, { new: true });
+        return res.status(200).json(Companyupdate);
+    } catch (err) {
+        return res.status(500).json(err);
+    }
+});
+
 module.exports = router;
