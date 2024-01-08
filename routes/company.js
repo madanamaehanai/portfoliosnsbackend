@@ -87,8 +87,36 @@ router.get("/company/services/:id", async (req, res) => {
 //投稿を修正する
 router.post("/update/:id", async (req, res) => {
     try {
-        const Companyupdate = await Company.findByIdAndUpdate({ _id: req.params.id }, req.body, { new: true });
-        return res.status(200).json(Companyupdate);
+        const companyId = req.params.id;
+        const existingCompany = await Company.findById(companyId);
+
+        if (req.body) {
+            // 既存データのキーを取得し、それが配列型であれば新しい値を追加
+            Object.keys(existingCompany._doc).forEach((key) => {
+                if (Array.isArray(req.body[key])) {
+                    existingCompany[key] = existingCompany[key].concat(req.body[key]);
+                } else if (key !== "_id" && req.body[key] !== undefined) {
+                    // 配列型でなくかつ _id でない場合、かつリクエストボディにフィールドが存在する場合は上書き
+                    existingCompany[key] = req.body[key];
+                }
+            });
+        }
+
+        const updatedCompany = await existingCompany.save();
+
+        return res.status(200).json(updatedCompany);
+    } catch (err) {
+        return res.status(500).json(err);
+    }
+});
+
+
+//全てのデータに新しいデータ枠を追加
+router.post("/updateall", async (req, res) => {
+    try {
+        const newData = req.body;
+        const updatedCompanies = await Company.updateMany({}, { $set: newData });
+        return res.status(200).json(updatedCompanies);
     } catch (err) {
         return res.status(500).json(err);
     }

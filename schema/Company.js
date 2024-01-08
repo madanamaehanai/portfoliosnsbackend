@@ -48,6 +48,25 @@ const CompanySchema = new mongoose.Schema({
     income: {
         type: String,
     },
+    office: {
+        type: Array,
+        default: [],
+    },
+    salary: {
+        type: String,
+    },
+    philosophy: {
+        type: String,
+    },
+    capital: {
+        type: String,
+    },
+    founding: {
+        type: String,
+    },
+    listed: {
+        type: String,
+    },
 },
     //時間を格納
     { timestamps: true }
