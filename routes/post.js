@@ -27,6 +27,16 @@ router.get("/author", async (req, res) => {
     }
 });
 
+//投稿を削除する
+router.post("/delete/:postId", async (req, res) => {
+    try {
+        const deletePost = await Post.deleteOne({_id: req.params.postId});
+        return res.status(200).json(deletePost);
+    } catch (err) {
+        return res.status(500).json(err);
+    }
+});
+
 
 //全ての投稿を取得
 router.get("/timeline/:userId", async (req, res) => {
