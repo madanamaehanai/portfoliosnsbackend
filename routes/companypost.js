@@ -38,6 +38,15 @@ router.get("/:companyid", async (req, res) => {
     }
 });
 
+//投稿を削除する
+router.post("/delete/:postId", async (req, res) => {
+    try {
+        const deletePost = await CompanyPost.deleteOne({_id: req.params.postId});
+        return res.status(200).json(deletePost);
+    } catch (err) {
+        return res.status(500).json(err);
+    }
+});
 
 //会社idが一致するpostを取得しカテゴリーを検索
 router.get("/:companyid/:tagname", async (req, res) => {
