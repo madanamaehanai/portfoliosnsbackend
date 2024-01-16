@@ -31,6 +31,16 @@ router.get("/:categoryname", async (req, res) => {
     }
 });
 
+//投稿を削除する
+router.post("/delete/:postId", async (req, res) => {
+    try {
+        const deletePost = await Learn.deleteOne({ _id: req.params.postId });
+        return res.status(200).json(deletePost);
+    } catch (err) {
+        return res.status(500).json(err);
+    }
+});
+
 
 
 
