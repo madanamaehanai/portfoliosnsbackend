@@ -23,8 +23,18 @@ router.post("/", async (req, res) => {
 //会社idが一致するpostを取得しカテゴリーを検索
 router.get("/:tagname", async (req, res) => {
     try {
-        const Answerposts = await Preparation.find({ category: req.params.tagname});
+        const Answerposts = await Preparation.find({ category: req.params.tagname });
         return res.status(200).json(Answerposts);
+    } catch (err) {
+        return res.status(500).json(err);
+    }
+});
+
+//投稿を削除する
+router.post("/delete/:postId", async (req, res) => {
+    try {
+        const deletePost = await Preparation.deleteOne({ _id: req.params.postId });
+        return res.status(200).json(deletePost);
     } catch (err) {
         return res.status(500).json(err);
     }
